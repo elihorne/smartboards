@@ -78,5 +78,3 @@ for (var i = 0; i < artboardsMeta.length; ++i) {
 }
 
 [doc showMessage: 'Gridification complete.'];
-//var app = [NSApplication sharedApplication];
-//[app displayDialog:"The operation is complete" withTitle:"We’re done"]
