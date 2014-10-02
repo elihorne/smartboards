@@ -1,0 +1,82 @@
+// (cmd alt G)
+// Align artboards by section and rename
+
+// options
+var PADDING = 100;
+
+// get all the artboards on the current page
+var artboards = [[doc currentPage] artboards];
+
+// set up the artboards object
+var artboardsMeta = [];
+
+// add artboard data to the object
+for (var i = 0; i < artboards.count(); i++) {
+    var artboard = artboards[i];
+    var name = artboard.name();
+    var width = artboard.frame().width();
+    var height = artboard.frame().height();
+    var top = artboard.frame().y();
+    var left = artboard.frame().x();
+    artboardsMeta.push({
+        artboard: artboard,
+        name: name,
+        width: width,
+        height: height,
+        left: left,
+        top: top
+    });
+}
+
+// sort artboards by x and y position (grouping)
+artboardsMeta.sort(function(a, b) {
+  if (a.top != b.top) {
+    return a.top - b.top;
+  }
+  return a.left - b.left;
+});
+
+// align artboards to grid
+for (var i = 0; i < artboardsMeta.length; ++i) {
+  var obj = artboardsMeta[i];
+  var artboard = obj.artboard;
+  var height = obj.height;
+  var width = obj.width;
+
+  var roundedTop = Math.round(obj.top / (height + PADDING)) * (height + PADDING);
+  var roundedLeft = Math.round(obj.left / (width + PADDING)) * (width + PADDING);
+
+  var frame = [artboard frame];
+  [frame setX: roundedLeft];
+  [frame setY: roundedTop];
+}
+
+// figure out the names (letter for row, number for column)
+var currentRow = -1;
+var currentColumn = -1;
+var lastTop = -10000000000000000000;
+for (var i = 0; i < artboardsMeta.length; ++i) {
+  var artboard = artboardsMeta[i];
+  if (artboard.top > lastTop) {
+    ++currentRow;
+    currentColumn = 0;
+    lastTop = artboard.top;
+  }
+  var charCode = String.fromCharCode(65 + currentRow);
+  var formattedRow = currentColumn < 10 ? '0' + currentColumn : currentColumn;
+  var finalName = charCode + formattedRow;
+
+  artboardObject = artboard.artboard;
+  [artboardObject setName:finalName];
+
+  var artboardInternal = artboard.artboard;
+  var frame = [artboardInternal frame];
+  [frame setX: currentColumn * (artboard.width + PADDING)];
+  [frame setY: currentRow * (artboard.height + PADDING)];
+
+  ++currentColumn;
+}
+
+[doc showMessage: 'Gridification complete.'];
+//var app = [NSApplication sharedApplication];
+//[app displayDialog:"The operation is complete" withTitle:"We’re done"]
