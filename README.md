@@ -1,5 +1,11 @@
-# Smartboards: Nifty plugins for Sketch
+Smartboards is a collection of plugins that make my life easier in Sketch.
 
-Gridify: This plugin aligns your artboards into a series of columns and rows.  Each artboard is renamed by the row they are in (a letter) and a two digit number for the column.  The artboards are separated by 100px, which you can change in the source.
+## Gridify
 
-To use, add the "smartboards" folder to ~/Library/Application Support/Sketch/Plugins.  Gridify can be triggered with the keyboard shortcut: "option+command+g"
+* Aligns artboards to a grid with 100px gutters
+* Renames the artboards based on column and row (A00, A01, B00, B01, B02)
+* Alphabetizes the artboards in the layers list.
+
+###### Shortcut: cmd + opt + g
+
+To install, download "Smartboards" as a zip file and then add the folder to your Sketch plugin folder (In Sketch 3, choose plugins > Reveal Plugins Folder)
