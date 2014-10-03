@@ -3,7 +3,7 @@ Smartboards is a collection of plugins that make my life easier in Sketch.
 ## Gridify
 
 * Aligns artboards to a grid with `100px` gutters
-* Renames the artboards based on column and row (`A00`, `A01`, `B00`, `B01`, `B02`)
+* Renames the artboards based on column (number) and row (letter) [`A00`, `A01`, `B00`, `B01`, `B02`]
 * Alphabetizes the artboards in the layers list.
 
 ###### Shortcut: cmd + opt + g
