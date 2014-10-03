@@ -4,8 +4,10 @@
 // options
 var PADDING = 100;
 
+
 // get all the artboards on the current page
 var artboards = [[doc currentPage] artboards];
+var page = [doc currentPage];
 
 // set up the artboards object
 var artboardsMeta = [];
@@ -75,6 +77,57 @@ for (var i = 0; i < artboardsMeta.length; ++i) {
   [frame setY: currentRow * (artboard.height + PADDING)];
 
   ++currentColumn;
+}
+
+// sort artboards in the Layers List
+var layersList = [];
+for (var i = 0; i < artboards.count(); i++) {
+  var artboard = artboards[i];
+  var name = artboard.name();
+  layersList.push({
+      artboard: artboard,
+      name: name
+  });
+}
+
+// sort layers list by name
+layersList.sort(function(a, b){
+  if(a.name < b.name) {
+    return 1
+  }
+  if(a.name > b.name) {
+    return -1
+  }
+  return 0
+});
+
+// help function to add artboards
+function addArtboard(page, artboard) {
+  artboard = artboard;
+  frame = artboard.frame();
+  frame.constrainProportions = false;
+  page.addLayer(artboard);
+  return artboard;
+};
+
+// helper function to remove artboards
+function removeArtboardFromPage(page, name) {
+    var theArtboard = null;
+    var abs = page.artboards().objectEnumerator();
+
+    while (a = abs.nextObject()) {
+        if (a.name() == name) {
+            page.removeLayer(a)
+            break;
+        }
+    }
+}
+
+// loop through the alphabetized items, remove the old ones and re-add
+for (var i = 0; i < layersList.length; i++) {
+  var artboard = layersList[i];
+  removeArtboardFromPage(page, artboard.name)
+  addArtboard(page, artboard.artboard);
 }
 
 [doc showMessage: 'Gridification complete.'];
