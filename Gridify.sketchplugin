@@ -1,18 +1,18 @@
 // (cmd alt G)
-// Align artboards by section and rename
+// Align artboards by section and rename.
 
 // options
 var PADDING = 100;
 
 
-// get all the artboards on the current page
+// Get all the artboards on the current page.
 var artboards = [[doc currentPage] artboards];
 var page = [doc currentPage];
 
-// set up the artboards object
+// Set up the artboards object.
 var artboardsMeta = [];
 
-// add artboard data to the object
+// Add artboard data to the object.
 for (var i = 0; i < artboards.count(); i++) {
     var artboard = artboards[i];
     var name = artboard.name();
@@ -30,7 +30,7 @@ for (var i = 0; i < artboards.count(); i++) {
     });
 }
 
-// sort artboards by x and y position (grouping)
+// Sort artboards by x and y position (grouping).
 artboardsMeta.sort(function(a, b) {
   if (a.top != b.top) {
     return a.top - b.top;
@@ -38,7 +38,7 @@ artboardsMeta.sort(function(a, b) {
   return a.left - b.left;
 });
 
-// align artboards to grid
+// Align artboards to grid.
 for (var i = 0; i < artboardsMeta.length; ++i) {
   var obj = artboardsMeta[i];
   var artboard = obj.artboard;
@@ -53,7 +53,7 @@ for (var i = 0; i < artboardsMeta.length; ++i) {
   [frame setY: roundedTop];
 }
 
-// figure out the names (letter for row, number for column)
+// Figure out the names (letter for row, number for column).
 var currentRow = -1;
 var currentColumn = -1;
 var lastTop = -10000000000000000000;
@@ -79,7 +79,7 @@ for (var i = 0; i < artboardsMeta.length; ++i) {
   ++currentColumn;
 }
 
-// sort artboards in the Layers List
+// Sort artboards in the Layers List.
 var layersList = [];
 for (var i = 0; i < artboards.count(); i++) {
   var artboard = artboards[i];
@@ -90,7 +90,7 @@ for (var i = 0; i < artboards.count(); i++) {
   });
 }
 
-// sort layers list by name
+// Sort layers list by name.
 layersList.sort(function(a, b){
   if(a.name < b.name) {
     return 1
@@ -101,7 +101,7 @@ layersList.sort(function(a, b){
   return 0
 });
 
-// help function to add artboards
+// Helper function to add artboards.
 function addArtboard(page, artboard) {
   artboard = artboard;
   frame = artboard.frame();
@@ -110,7 +110,7 @@ function addArtboard(page, artboard) {
   return artboard;
 };
 
-// helper function to remove artboards
+// Helper function to remove artboards.
 function removeArtboardFromPage(page, name) {
     var theArtboard = null;
     var abs = page.artboards().objectEnumerator();
@@ -123,7 +123,7 @@ function removeArtboardFromPage(page, name) {
     }
 }
 
-// loop through the alphabetized items, remove the old ones and re-add
+// Loop through the alphabetized items, remove the old ones and add the new ones.
 for (var i = 0; i < layersList.length; i++) {
   var artboard = layersList[i];
   removeArtboardFromPage(page, artboard.name)
