@@ -15,18 +15,13 @@ var artboardsMeta = [];
 // Add artboard data to the object.
 for (var i = 0; i < artboards.count(); i++) {
     var artboard = artboards[i];
-    var name = artboard.name();
-    var width = artboard.frame().width();
-    var height = artboard.frame().height();
-    var top = artboard.frame().y();
-    var left = artboard.frame().x();
     artboardsMeta.push({
         artboard: artboard,
-        name: name,
-        width: width,
-        height: height,
-        left: left,
-        top: top
+        name: artboard.name(),
+        width: width.frame().width(),
+        height: height.frame().height(),
+        left: left.frame().x(),
+        top: top.frame().y()
     });
 }
 
