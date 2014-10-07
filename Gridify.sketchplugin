@@ -98,8 +98,7 @@ layersList.sort(function(a, b){
 
 // Helper function to add artboards.
 function addArtboard(page, artboard) {
-  artboard = artboard;
-  frame = artboard.frame();
+  var frame = artboard.frame();
   frame.constrainProportions = false;
   page.addLayer(artboard);
   return artboard;
@@ -107,15 +106,15 @@ function addArtboard(page, artboard) {
 
 // Helper function to remove artboards.
 function removeArtboardFromPage(page, name) {
-    var theArtboard = null;
-    var abs = page.artboards().objectEnumerator();
+  var theArtboard = null;
+  var abs = page.artboards().objectEnumerator();
 
-    while (a = abs.nextObject()) {
-        if (a.name() == name) {
-            page.removeLayer(a)
-            break;
-        }
+  while (a = abs.nextObject()) {
+    if (a.name() == name) {
+      page.removeLayer(a)
+      break;
     }
+  }
 }
 
 // Loop through the alphabetized items, remove the old ones and add the new ones.
