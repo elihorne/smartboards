@@ -1,9 +1,9 @@
 // (cmd alt G)
 // Align artboards by section and rename.
 
+
 // options
 var PADDING = 100;
-
 
 // Get all the artboards on the current page.
 var artboards = [[doc currentPage] artboards];
@@ -14,15 +14,16 @@ var artboardsMeta = [];
 
 // Add artboard data to the object.
 for (var i = 0; i < artboards.count(); i++) {
-    var artboard = artboards[i];
-    artboardsMeta.push({
-        artboard: artboard,
-        name: artboard.name(),
-        width: width.frame().width(),
-        height: height.frame().height(),
-        left: left.frame().x(),
-        top: top.frame().y()
-    });
+  var artboard = artboards[i];
+  var frame = artboard.frame();
+  artboardsMeta.push({
+    artboard: artboard,
+    name: artboard.name(),
+    width: frame.width(),
+    height: frame.height(),
+    left: frame.x(),
+    top: frame.y()
+  });
 }
 
 // Sort artboards by x and y position (grouping).
@@ -33,7 +34,12 @@ artboardsMeta.sort(function(a, b) {
   return a.left - b.left;
 });
 
-// Align artboards to grid.
+// Variables to figure out the names (letter for row, number for column).
+var currentRow = -1;
+var currentColumn = -1;
+var lastTop = -10000000000000000000;
+
+// Align artboards to grid, assign names.
 for (var i = 0; i < artboardsMeta.length; ++i) {
   var obj = artboardsMeta[i];
   var artboard = obj.artboard;
@@ -46,19 +52,14 @@ for (var i = 0; i < artboardsMeta.length; ++i) {
   var frame = [artboard frame];
   [frame setX: roundedLeft];
   [frame setY: roundedTop];
-}
 
-// Figure out the names (letter for row, number for column).
-var currentRow = -1;
-var currentColumn = -1;
-var lastTop = -10000000000000000000;
-for (var i = 0; i < artboardsMeta.length; ++i) {
   var artboard = artboardsMeta[i];
   if (artboard.top > lastTop) {
     ++currentRow;
     currentColumn = 0;
     lastTop = artboard.top;
   }
+
   var charCode = String.fromCharCode(65 + currentRow);
   var formattedRow = currentColumn < 10 ? '0' + currentColumn : currentColumn;
   var finalName = charCode + formattedRow;
@@ -80,8 +81,8 @@ for (var i = 0; i < artboards.count(); i++) {
   var artboard = artboards[i];
   var name = artboard.name();
   layersList.push({
-      artboard: artboard,
-      name: name
+    artboard: artboard,
+    name: name
   });
 }
 
