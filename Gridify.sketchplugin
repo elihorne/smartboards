@@ -101,7 +101,7 @@ layersList.sort(function(a, b){
 function addArtboard(page, artboard) {
   var frame = artboard.frame();
   frame.constrainProportions = false;
-  page.addLayer(artboard);
+  page.addLayers([artboard]);
   return artboard;
 };
 
