@@ -7,6 +7,8 @@ Smartboards aims to make managing artboards easier in Sketch.  Gridify is the fi
 * Renames the artboards based on column (number) and row (letter) [`A00`, `A01`, `B00`, `B01`, `B02`]
 * Alphabetizes the artboards in the layers list.
 
+![Screenshot](http://f.cl.ly/items/0d3o2p1Q3R2W2l0c3O25/smartboards.gif)
+
 To install, download "`Smartboards`" as a zip file and then add the folder to your Sketch plugin folder (In Sketch 3, choose `Plugins` > `Reveal Plugins Folder`)
 
 Notes: Gridify expects that artboards are the same size (width and height). It also expects that artboards that are meant to be in the same row are aligned on the same Y-axis value.  It doesn't care about the X-axis value.
