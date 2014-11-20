@@ -1,4 +1,4 @@
-Smartboards aims to make managing artboards easier in Sketch.  Gridify is the first plugin 
+Smartboards aims to make managing artboards easier in Sketch.  Gridify is the first plugin. 
 
 ## Gridify
 ###### Shortcut: cmd + opt + g
