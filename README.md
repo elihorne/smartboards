@@ -1,6 +1,6 @@
 Smartboards aims to make managing artboards easier in Sketch.  Gridify is the first plugin. 
 
-## Gridify
+## Align and Rename
 ###### Shortcut: cmd + opt + g
 
 * Aligns artboards to a grid with `100px` gutters
@@ -17,3 +17,7 @@ There's a slightly hidden feature that I use a lot but is hard to describe.  If 
 
 ![Screenshot](http://f.cl.ly/items/3P2p1M002x3G0W3z1h1S/smartboards-2.gif)
 
+## Align
+###### Shortcut: shift + cmd + opt + g
+
+* Aligns artboard to the same grid, but does not rename the artboards.
