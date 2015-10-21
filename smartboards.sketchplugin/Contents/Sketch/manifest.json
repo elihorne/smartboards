@@ -1,0 +1,24 @@
+{
+  "author" : "",
+  "commands" : [
+    {
+      "script" : "align-and-rename.js",
+      "handler" : "onRun",
+      "shortcut" : "cmd alt G",
+      "name" : "Align and Rename",
+      "identifier" : "align-and-rename"
+    },
+    {
+      "script" : "align.js",
+      "handler" : "onRun",
+      "shortcut" : "shift cmd alt G",
+      "name" : "Align",
+      "identifier" : "align"
+    }
+  ],
+  "identifier" : "com.example.sketch.6589264e-dd8d-4aed-8f89-9dbdf4ca8202",
+  "version" : "1.1",
+  "description" : "",
+  "authorEmail" : "elihorne@gmail.com",
+  "name" : "Smartboards"
+}
