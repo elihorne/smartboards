@@ -1,7 +1,5 @@
 var align = function(context, shouldRename) {
 
-//log('This is an example Sketch script.');
-
 // Organize artboards by row and column and rename for alphabetical sort.
 
 var doc = context.document;
@@ -145,7 +143,5 @@ for (var i = 0; i < layersList.length; i++) {
   removeArtboardFromPage(page, artboard.name)
   addArtboard(page, artboard.artboard);
 }
-
-[doc showMessage: 'Smartboards: Artboards aligned and renamed.'];
 
 };
