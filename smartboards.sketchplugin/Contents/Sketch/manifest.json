@@ -1,5 +1,5 @@
 {
-  "author" : "",
+  "author" : "Eli Horne",
   "commands" : [
     {
       "script" : "align-and-rename.js",
@@ -16,7 +16,7 @@
       "identifier" : "align"
     }
   ],
-  "identifier" : "com.example.sketch.6589264e-dd8d-4aed-8f89-9dbdf4ca8202",
+  "identifier" : "com.elihorne.smartboards",
   "version" : "1.1",
   "description" : "Align and alphabetize artboards for easy organization.",
   "authorEmail" : "elihorne@gmail.com",
