@@ -4,6 +4,8 @@ var align = function(context, shouldRename) {
 
 var doc = context.document;
 
+var artboardPrefixRegex = /^[A-Z]{1,2}\d{2,3}\_/;
+
 // options
 var PADDING = 100;
 
@@ -23,9 +25,16 @@ var artboardsMeta = [];
 for (var i = 0; i < artboards.count(); i++) {
   var artboard = artboards[i];
   var frame = artboard.frame();
+  var artboardName = artboard.name();
+  // run the name through the regex.  If it matches, split and replace name with split result
+
+  if(artboardPrefixRegex.test(artboardName)){
+    artboardName = artboardName.split(artboardPrefixRegex)[1]
+  };
+
   artboardsMeta.push({
     artboard: artboard,
-    name: artboard.name(),
+    name: artboardName,
     width: frame.width(),
     height: frame.height(),
     left: frame.x(),
@@ -50,6 +59,7 @@ for (var i = 0; i < artboardsMeta.length; ++i) {
   var artboard = obj.artboard;
   var height = obj.height;
   var width = obj.width;
+  var name = obj.name;
 
   var artboard = artboardsMeta[i];
   if (artboard.top > lastTop) {
@@ -60,24 +70,19 @@ for (var i = 0; i < artboardsMeta.length; ++i) {
 
 
   if(shouldRename) {
+    // Get the letter for the row
+    var charCode = String.fromCharCode(65 + currentRow);
 
-  //
-  // LAYER NAMING
-  //
+    // Get the zero based number for the column
+    var formattedRow = currentColumn < 10 ? '0' + currentColumn : currentColumn;
 
-  // Get the letter for the row
-  var charCode = String.fromCharCode(65 + currentRow);
+    // Assemble the new artboard name
+    var finalName = charCode + formattedRow + '_' + name;
 
-  // Get the zero based number for the column
-  var formattedRow = currentColumn < 10 ? '0' + currentColumn : currentColumn;
-
-  // Assemble the new artboard name
-  var finalName = charCode + formattedRow;
-
-  artboardObject = artboard.artboard;
-  [artboardObject setName:finalName];
+    artboardObject = artboard.artboard;
+    [artboardObject setName:finalName];
   }
-  
+
   //
   // LAYER POSITIONING
   //
