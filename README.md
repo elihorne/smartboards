@@ -10,10 +10,10 @@ Download `Smartboards` [as a zip file](https://github.com/elihorne/smartboards/a
 
 How to find your Sketch plugin folder: (In Sketch 3) choose `Plugins` > `Manage Plugins...` then click the cog icon near the bottom left corner, and select `Show Plugins Folder`.  
 
-# Smartboards Features
+# Features
 
-## Align and Rename
-#### Shortcut: cmd + opt + g
+#### Align and Rename
+> Shortcut: cmd + opt + g
 
 * Aligns artboards to a grid with `100px` gutters
 * Renames the artboards based on column (number) and row (letter) [`A00`, `A01`, `B00`, `B01`, `B02`]
@@ -27,7 +27,7 @@ There's a slightly hidden feature that I use a lot but is hard to describe.  If 
 
 ![Screenshot](http://f.cl.ly/items/3P2p1M002x3G0W3z1h1S/smartboards-2.gif)
 
-## Align
-##### Shortcut: shift + cmd + opt + g
+#### Align
+>Shortcut: shift + cmd + opt + g
 
 Aligns artboard to the same grid, but does not rename the artboards. Use this if you don't want your artboard names messed with. Align and Rename does its best to preserve custom artboard names, but sometimes you might not want it. 
