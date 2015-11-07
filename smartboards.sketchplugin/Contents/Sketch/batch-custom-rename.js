@@ -2,42 +2,51 @@
 @import "common.js"
 
 var onRun = function(context) {
-  //var shouldRename = false;
-  //align(context, shouldRename);
 
-function createDialog()
-{
-	var alert = COSAlertWindow.new();
+	function createDialog() {
 
-	function createTextFieldWithLavel(label,defaultValue) {
+		var alert = COSAlertWindow.new();
+
+		function createTextFieldWithLabel(label,defaultValue) {
 			alert.addTextLabelWithValue(label);
 			alert.addTextFieldWithValue(defaultValue);
+		}
+
+		alert.setMessageText("Rename Page Artboards");
+		alert.setInformativeText("This will replace the existing names for all artboards on this page.");
+
+		// Name
+		createTextFieldWithLabel("Name:","");
+
+		// Actions buttons.
+		alert.addButtonWithTitle('OK');
+		alert.addButtonWithTitle('Cancel');
+
+		return alert;
 	}
 
-	alert.setMessageText("Rename Selected Layers");
-	alert.setInformativeText("Helpers: \nNumber Sequence: %N or %n \nDimensions: %W %H \nMove Original Layer Name: *");
-
-	// Name
-	createTextFieldWithLavel("Name:","");
-
-	// Actions buttons.
-	alert.addButtonWithTitle('OK');
-	alert.addButtonWithTitle('Cancel');
-
-	return alert;
-}
-
-  log('poop');
-
-  var alert = createDialog();
+	var alert = createDialog();
   var result = alert.runModal();
   if (result == 1000) {
-    log(alert.viewAtIndex(1).stringValue());
+
+		var doc = context.document;
+		var artboards = [[doc currentPage] artboards];
+
+		for (var i = 0; i < artboards.count(); i++) {
+			var artboardObject = artboards[i];
+
+			var artboardName = artboardObject.name();
+
+			if(artboardPrefixRegex.test(artboardName)){
+				var prefix = artboardName.split('_')[0];
+				artboardName = prefix + '_' + alert.viewAtIndex(1).stringValue();
+			} else {
+				artboardName = alert.viewAtIndex(1).stringValue();
+			}
+			renameArtboard(artboardObject, artboardName);
+		}
   } else {
     return;
   }
 
-
-  var doc = context.document;
-  //[doc askForUserInput: 'Rename Page Artboards' initialValue:'']
 };
