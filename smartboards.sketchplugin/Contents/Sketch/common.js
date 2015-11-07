@@ -1,10 +1,15 @@
+var artboardPrefixRegex = /^[A-Z]{1,2}\d{2,3}\_/;
+
+var renameArtboard = function(artboardObject, finalName) {
+
+  [artboardObject setName:finalName];
+}
+
 var align = function(context, shouldRename) {
 
 // Organize artboards by row and column and rename for alphabetical sort.
 
 var doc = context.document;
-
-var artboardPrefixRegex = /^[A-Z]{1,2}\d{2,3}\_/;
 
 // options
 var PADDING = 100;
@@ -68,10 +73,15 @@ for (var i = 0; i < artboardsMeta.length; ++i) {
     lastTop = artboard.top;
   }
 
-
   if(shouldRename) {
     // Get the letter for the row
-    var charCode = String.fromCharCode(65 + currentRow);
+    if(currentRow <= 25) {
+      var charCode = String.fromCharCode(65 + currentRow);
+    }
+
+    if(currentRow > 25) {
+      var charCode = 'A' + String.fromCharCode(65 + parseInt(currentRow - 26));
+    }
 
     // Get the zero based number for the column
     var formattedRow = currentColumn < 10 ? '0' + currentColumn : currentColumn;
@@ -80,7 +90,7 @@ for (var i = 0; i < artboardsMeta.length; ++i) {
     var finalName = charCode + formattedRow + '_' + name;
 
     artboardObject = artboard.artboard;
-    [artboardObject setName:finalName];
+    renameArtboard(artboardObject, finalName);
   }
 
   //
