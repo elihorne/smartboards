@@ -36,10 +36,17 @@ var onRun = function(context) {
 			var artboardObject = artboards[i];
 
 			var artboardName = artboardObject.name();
+			var customRename = alert.viewAtIndex(1).stringValue();
+
 
 			if(artboardPrefixRegex.test(artboardName)){
 				var prefix = artboardName.split('_')[0];
-				artboardName = prefix + '_' + alert.viewAtIndex(1).stringValue();
+				if(customRename.length() === 0) {
+					log('empty string');
+					artboardName = prefix;
+				} else {
+					artboardName = prefix + '_' + customRename;
+				}
 			} else {
 				artboardName = alert.viewAtIndex(1).stringValue();
 			}
