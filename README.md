@@ -31,3 +31,9 @@ There's a slightly hidden feature that I use a lot but is hard to describe.  If 
 >Shortcut: <kbd>shift</kbd> + <kbd>cmd</kbd> + <kbd>opt</kbd> + <kbd>g</kbd>
 
 Aligns artboard to the same grid, but does not rename the artboards. Use this if you don't want your artboard names messed with. `Align and Rename` does its best to preserve custom artboard names, but sometimes you might not want it. 
+
+#### Rename Page Artboards
+
+Allows you to specify a custom name for all artboards.  If you have Column and Row indicators (ex: A00), these will be preserved.
+
+If you'd like to remove the custom name from all artboards, just leave the input field empty.  
