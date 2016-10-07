@@ -13,7 +13,7 @@ var onRun = function(context) {
 		}
 
 		alert.setMessageText("Rename Page Artboards");
-		alert.setInformativeText("This will replace the existing names for all artboards on this page.");
+		alert.setInformativeText("This will replace the existing names for all artboards on this page. Leave the field empty to remove custom names.");
 
 		// Name
 		createTextFieldWithLabel("Name:","");
