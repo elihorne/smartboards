@@ -1,4 +1,5 @@
 var artboardPrefixRegex = /^[A-Z]{1,2}\d{2,3}\_/;
+var artboardPrefixOnly = /^[A-Z]{1,2}\d{2,3}$/;
 
 var renameArtboard = function(artboardObject, finalName) {
 
@@ -22,6 +23,10 @@ var page = [doc currentPage];
 var currentRow = -1;
 var currentColumn = -1;
 var lastTop = -10000000000000000000;
+var rowHeight = 0;
+var lastWidth = 0;
+var lastX = 0;
+var lastY = 0;
 
 // Set up the artboards object.
 var artboardsMeta = [];
@@ -65,12 +70,16 @@ for (var i = 0; i < artboardsMeta.length; ++i) {
   var height = obj.height;
   var width = obj.width;
   var name = obj.name;
-
+  var newRow = 0;
+  var oLeft = obj.left;
+  var oTop = obj.top;
+  
   var artboard = artboardsMeta[i];
   if (artboard.top > lastTop) {
     ++currentRow;
     currentColumn = 0;
     lastTop = artboard.top;
+	newRow = 1;
   }
 
   if(shouldRename) {
@@ -86,9 +95,18 @@ for (var i = 0; i < artboardsMeta.length; ++i) {
     // Get the zero based number for the column
     var formattedRow = currentColumn < 10 ? '0' + currentColumn : currentColumn;
 
-    // Assemble the new artboard name
-    var finalName = charCode + formattedRow + '_' + name;
 
+    // Assemble the new artboard name -- test if name matches a generated prefix
+	if(artboardPrefixOnly.test(name)){
+		//if it does, just overwrite
+		var finalName = charCode + formattedRow;
+	} else {
+		//otherwise add prefix to current name
+		var finalName = charCode + formattedRow + '_' + name;
+	};
+
+//	finalName = lastY + "_" + rowHeight;
+    
     artboardObject = artboard.artboard;
     renameArtboard(artboardObject, finalName);
   }
@@ -99,8 +117,16 @@ for (var i = 0; i < artboardsMeta.length; ++i) {
 
   var artboardInternal = artboard.artboard;
   var frame = [artboardInternal frame];
-  [frame setX: currentColumn * (artboard.width + PADDING)];
-  [frame setY: currentRow * (artboard.height + PADDING)];
+  [frame setX: (currentColumn ? lastX + lastWidth + PADDING : 0)];
+  [frame setY: (currentRow ? (newRow ? lastY + rowHeight + PADDING : lastY):0)];
+
+  if ((height>rowHeight) || (newRow)) {
+	  rowHeight = height;
+  }
+
+  lastWidth = width;
+  lastX = artboardInternal.frame().x();
+  lastY = artboardInternal.frame().y();
 
   ++currentColumn;
 }

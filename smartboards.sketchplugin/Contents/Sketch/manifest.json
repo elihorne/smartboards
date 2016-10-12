@@ -24,7 +24,7 @@
     }
   ],
   "identifier" : "com.elihorne.smartboards",
-  "version" : "1.2",
+  "version" : "1.3",
   "homepage" : "https://github.com/elihorne/smartboards",
   "description" : "Align and rename artboards for easy organization.",
   "authorEmail" : "elihorne@gmail.com",
