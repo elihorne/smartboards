@@ -1,4 +1,4 @@
-##### Smartboards aims to make managing and exporting artboards easier in Sketch.
+## Smartboards aims to make managing and exporting artboards easier in Sketch.
 > Thanks to [xsaddi](https://github.com/xsaddi) for mixed artboard size support.
 
 # Installation
