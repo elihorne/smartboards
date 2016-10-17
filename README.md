@@ -22,7 +22,7 @@ How to find your Sketch plugin folder: (In Sketch 3) choose `Plugins` > `Manage 
 
 ![Screenshot](http://f.cl.ly/items/0d3o2p1Q3R2W2l0c3O25/smartboards.gif)
 
-Notes: `Align` expects that artboards are the same size (width and height). It also expects that artboards that are meant to be in the same row are aligned on the same Y-axis value.  It doesn't care about the X-axis value.
+Notes: `Align` expects that artboards that are meant to be in the same row are top aligned on the same Y-axis value.  It doesn't care about the X-axis value.
 
 There's a slightly hidden feature that I use a lot but is hard to describe.  If you place an artboard in between two rows on the Y-axis and run `Align`, it will create room for a new row by shifting existing rows down by one, and then will rename accordingly.  Imagine you have `Artboard 1` that is `10x10` at `Y = 1`, and `Artboard 2` that is `10x10` at `Y = 111`.  If you place a third artboard where `1 < Y < 111`, `Align` will do the rest of the heavy lifting for you.
 
@@ -37,4 +37,4 @@ Aligns artboard to the same grid, but does not rename the artboards. Use this if
 
 Allows you to specify a custom name for all artboards.  If you have Column and Row indicators (ex: A00), these will be preserved.
 
-If you'd like to remove the custom name from all artboards, just leave the input field empty.  
+If you'd like to remove the custom naming from all artboards, just leave the input field empty.  
