@@ -1,5 +1,8 @@
 {
   "author" : "Eli Horne",
+  "description": "Plugin to make managing and exporting artboards easier in Sketch",
+  "appcast": "https://raw.githubusercontent.com/elihorne/smartboards/master/appcast.xml",
+  "version": "1.1",
   "commands" : [
     {
       "script" : "align.js",
